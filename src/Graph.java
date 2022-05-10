@@ -4,8 +4,10 @@ public class Graph<T> implements GraphInterface<T> {
     private T[] labels; //labels [i] contains the label for vertex i
 
     //constructors
+    @SuppressWarnings("unchecked")
     public Graph(int n){
         edges = new boolean[n][n]; //All values initially false
+        //@SuppressWarnings("unchecked")
         labels = (T[]) new Object[n]; //All values initially null
     }
 
@@ -61,10 +63,12 @@ public class Graph<T> implements GraphInterface<T> {
 
     //returns a queue with the breadth first traversal
     public QueueInterface<T> getBreadthFirstTraversal(T origin){
-
+        ArrayQueue<T> test = new ArrayQueue<>();
+        return test;
     }
     //returns a stack with the depth first traversal
     public StackInterface<T> getDepthFirstTraversal(T origin){
-
+        ResizableArrayStack<T> testing = new ResizableArrayStack<>();
+        return testing;
     }
 }

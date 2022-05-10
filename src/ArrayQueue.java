@@ -69,7 +69,7 @@ public final class ArrayQueue<T> implements QueueInterface<T>
 
    public boolean isEmpty()
    {
-      checkIntegrity():
+      checkIntegrity();
       return frontIndex == ((backIndex + 1) % queue.length);
    } // end isEmpty
 
