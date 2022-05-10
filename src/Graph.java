@@ -63,8 +63,18 @@ public class Graph<T> implements GraphInterface<T> {
 
     //returns a queue with the breadth first traversal
     public QueueInterface<T> getBreadthFirstTraversal(T origin){
-        ArrayQueue<T> test = new ArrayQueue<>();
-        return test;
+        ArrayQueue<T> traversalOrder = new ArrayQueue<>();
+        ArrayQueue<T> vertexQueue = new ArrayQueue<>();
+        //Mark originVertex as visited?
+        //traversalOrder.enqueue(origin);
+        //vertexQueue.enqueue(origin);
+
+        //while (!vertexQueue.isEmpty()){
+          // T frontVertex = vertexQueue.dequeue();
+
+           // while (frontVertex = vertexQueue.)
+        //}
+        return traversalOrder;
     }
     //returns a stack with the depth first traversal
     public StackInterface<T> getDepthFirstTraversal(T origin){

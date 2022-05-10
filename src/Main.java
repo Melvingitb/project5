@@ -13,6 +13,7 @@ public class Main {
         example.setLabel(7, 'H');
         example.setLabel(8, 'I');
 
+        //adding all the edges
         example.addEdge(0, 1);
         example.addEdge(0, 3);
         example.addEdge(0, 4);
@@ -26,10 +27,27 @@ public class Main {
         example.addEdge(7, 8);
         example.addEdge(8, 5);
 
+        Graph<Integer> testgraph = new Graph<>(3);
+
+        int[] testneigh = testgraph.neighbors(0);
+
+        for (int i = 0; i < testneigh.length;i++){
+            System.out.println(testneigh[i]);
+            if (testneigh[i] == null){
+                System.out.println("itworks");
+            }
+        }
+
+        //testgraph.
+
+        //int[] tester = new int[0];
+        //System.out.println(tester[0]);
+        /*
         int[] testneigh = example.neighbors(0);
 
         for (int i = 0; i < testneigh.length;i++){
             System.out.println(testneigh[i]);
         }
+        */
     }
 }
