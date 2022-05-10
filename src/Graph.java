@@ -61,13 +61,13 @@ public class Graph<T> implements GraphInterface<T> {
     
     //traversal methods
 
-    //returns a queue with the breadth first traversal
+    //returns a queue with the breadth first traversal and also prints it out. follows pseudocode given in the notes without using a vertex class
     @SuppressWarnings("unchecked")
     public QueueInterface<T> getBreadthFirstTraversal(T origin){
         ArrayQueue<T> traversalOrder = new ArrayQueue<>();
         ArrayQueue<T> vertexQueue = new ArrayQueue<>();
-        T[] container = (T[])new Object[labels.length];
-        int count1 = 0;
+        T[] container = (T[])new Object[labels.length]; //contains the visited entries
+        int count1 = 0;//various counter variables to stop the while loops
         int count = 0;
         int count2 = 0;
         T frontVertex;
@@ -99,42 +99,40 @@ public class Graph<T> implements GraphInterface<T> {
         }
         return traversalOrder;
     }
-    //Prints the depth first traversal
-    public void getDepthFirstTraversal(T origin){
-        boolean visited[] = new boolean[labels.length];
+    //Prints the depth first traversal and returns a queue with it. loosely follows pseudocode in notes without using vertex class
+    public QueueInterface<T> getDepthFirstTraversal(T origin){
+        boolean visited[] = new boolean[labels.length];//holds boolean values for if a neighbor had already been visited
         ResizableArrayStack<T> vertexStack = new ResizableArrayStack<>();
+        ArrayQueue<T> traversalOrder = new ArrayQueue<>();
         
         vertexStack.push(origin);
         T neighbor;
-        boolean yes = false;
 
         while (!vertexStack.isEmpty()){
             origin = vertexStack.peek();
-            //vertexStack.pop();
 
-            if (visited[this.getIndex(origin)] == false){
+            if (visited[this.getIndex(origin)] == false){ //if the vertex had not been visited yet then it adds it to the traversal order
                 System.out.print(origin);
+                traversalOrder.enqueue(origin);
                 visited[this.getIndex(origin)] = true;
 
-                //int[] theneighbors = this.neighbors(this.getIndex(origin));
             }
 
-            int[] theneighbors = this.neighbors(this.getIndex(origin));
+            int[] theneighbors = this.neighbors(this.getIndex(origin)); //array of neighbors of the current point
 
             for (int i = 0; i < theneighbors.length; i++){
                 neighbor = this.getLabel(theneighbors[i]);
 
                 if (!visited[getIndex(neighbor)]){
                     vertexStack.push(neighbor);
-                    //yes = true;
                     break;
-                    //yes = true;
-                }
+                }//checks to see if any of the neighbors have not been visited and pushes when it finds one
                 else if (i == theneighbors.length - 1){
                     vertexStack.pop();
-                }
+                }//pops once it knows that all the neighbors have been visited
             }
         }
+        return traversalOrder;
     }
 
     private boolean hasNeighbors(int vertex){
@@ -170,7 +168,7 @@ public class Graph<T> implements GraphInterface<T> {
 
         return itcontains;
     }
-
+    //checks to see if a value in an array was already visited, never ended up using it though
     private boolean checkvisits(T[] x, int[] y){
         for (int i = 0; i < x.length; i++){
             for (int j = 0; j < y.length;j++){
@@ -181,10 +179,7 @@ public class Graph<T> implements GraphInterface<T> {
         }
         return false;
     }
-
-    //while (this.hasNeighbors(this.getIndex(frontVertex))){
-
-    //            if (!contains(container, this.getLabel(theneighbors[count]))){
+//dft first draft. could not get it working, so started from scratch
 /*
         @SuppressWarnings("unchecked")
         public QueueInterface<T> getDepthFirstTraversal(T origin){

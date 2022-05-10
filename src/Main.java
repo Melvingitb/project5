@@ -28,11 +28,14 @@ public class Main {
         example.addEdge(7, 8);
         example.addEdge(8, 5);
 
+        //calling traversal methods to print out the traversals
         example.getBreadthFirstTraversal('A');
         System.out.println("");
         example.getDepthFirstTraversal('A');
         System.out.println("");
 
+        //another graph that was created and used to test the methods
+        /*
         Graph<Character> example2 = new Graph<>(4);
 
         example2.setLabel(0, '0');
@@ -50,5 +53,6 @@ public class Main {
         example2.getBreadthFirstTraversal('2');
         System.out.println("");
         example2.getDepthFirstTraversal('2');
+        */
     }
 }
