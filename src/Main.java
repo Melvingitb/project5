@@ -22,23 +22,28 @@ public class Main {
         example.addEdge(3, 6);
         example.addEdge(4, 5);
         example.addEdge(4, 7);
+        example.addEdge(5, 2);
         example.addEdge(5, 7);
         example.addEdge(6, 7);
         example.addEdge(7, 8);
         example.addEdge(8, 5);
 
-        System.out.println(example.getBreadthFirstTraversal('A'));
+        example.getBreadthFirstTraversal('A');
 
-        //testgraph.
+        Graph<Character> example2 = new Graph<>(4);
 
-        //int[] tester = new int[0];
-        //System.out.println(tester[0]);
-        /*
-        int[] testneigh = example.neighbors(0);
+        example2.setLabel(0, '0');
+        example2.setLabel(1, '1');
+        example2.setLabel(2, '2');
+        example2.setLabel(3, '3');
 
-        for (int i = 0; i < testneigh.length;i++){
-            System.out.println(testneigh[i]);
-        }
-        */
+        example2.addEdge(0, 1);
+        example2.addEdge(1, 2);
+        example2.addEdge(2, 0);
+        example2.addEdge(0, 2);
+        example2.addEdge(2, 3);
+        example2.addEdge(3, 3);
+
+        example2.getBreadthFirstTraversal('2');
     }
 }

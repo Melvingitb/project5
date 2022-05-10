@@ -77,7 +77,7 @@ public class Graph<T> implements GraphInterface<T> {
         container[count1++] = origin;
         traversalOrder.enqueue(origin);
         vertexQueue.enqueue(origin);
-        System.out.println(origin);
+        System.out.print(origin);
 
         while (!vertexQueue.isEmpty()){
            frontVertex = vertexQueue.dequeue();
@@ -89,7 +89,7 @@ public class Graph<T> implements GraphInterface<T> {
                 nextNeighbor = this.getLabel(theneighbors[count]);
                 count++;
                 if (!contains(container, nextNeighbor)){
-                    System.out.println(nextNeighbor);
+                    System.out.print(nextNeighbor);
                     container[count1++] = nextNeighbor;
                     traversalOrder.enqueue(nextNeighbor);
                     vertexQueue.enqueue(nextNeighbor);
