@@ -82,6 +82,8 @@ public class Graph<T> implements GraphInterface<T> {
         while (!vertexQueue.isEmpty()){
            frontVertex = vertexQueue.dequeue();
            int[] theneighbors = this.neighbors(this.getIndex(frontVertex));
+           count = 0;
+           count2 = 0;
 
             while (count2 < theneighbors.length){
                 nextNeighbor = this.getLabel(theneighbors[count]);
