@@ -119,12 +119,12 @@ public class Graph<T> implements GraphInterface<T> {
         while (!vertexStack.isEmpty()){
             topVertex = vertexStack.peek();
             int[] theneighbors = this.neighbors(this.getIndex(topVertex));
-            count = 0;
-            count2 = 0;
+            //count = 0;
+            //count2 = 0;
 
-            if (!contains(container, this.getLabel(theneighbors[count]))){
+            if (this.checkvisits(container, theneighbors) != -1){
                 
-                nextNeighbor = this.getLabel(theneighbors[count]);
+                nextNeighbor = this.getLabel(theneighbors[this.checkvisits(container, theneighbors)]);
                 count++;
 
                 System.out.print(nextNeighbor);
@@ -134,7 +134,7 @@ public class Graph<T> implements GraphInterface<T> {
             }
             else{
                 vertexStack.pop();
-                count++;
+                //count2 = 0;
                 System.out.println(1);
             }
         }
@@ -176,5 +176,18 @@ public class Graph<T> implements GraphInterface<T> {
         return itcontains;
     }
 
+    private int checkvisits(T[] x, int[] y){
+        for (int i = 0; i < x.length; i++){
+            for (int j = 0; j < y.length;j++){
+                if (x[i] == this.getLabel(y[j])){
+                    return j;
+                }
+            }
+        }
+        return -1;
+    }
+
     //while (this.hasNeighbors(this.getIndex(frontVertex))){
+
+    //            if (!contains(container, this.getLabel(theneighbors[count]))){
 }
