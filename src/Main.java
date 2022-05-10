@@ -48,5 +48,7 @@ public class Main {
         example2.addEdge(3, 3);
 
         example2.getBreadthFirstTraversal('2');
+        System.out.println("");
+        example2.getDepthFirstTraversal('2');
     }
 }

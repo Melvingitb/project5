@@ -99,47 +99,42 @@ public class Graph<T> implements GraphInterface<T> {
         }
         return traversalOrder;
     }
-    //returns a queue with the depth first traversal
-    @SuppressWarnings("unchecked")
-    public QueueInterface<T> getDepthFirstTraversal(T origin){
-        ArrayQueue<T> traversalOrder = new ArrayQueue<>();
+    //Prints the depth first traversal
+    public void getDepthFirstTraversal(T origin){
+        boolean visited[] = new boolean[labels.length];
         ResizableArrayStack<T> vertexStack = new ResizableArrayStack<>();
-        T[] container = (T[])new Object[labels.length];
-        int count1 = 0;
-        int count = 0;
-        int count2 = 0;
-        T topVertex;
-        T nextNeighbor;
-
-        container[count1++] = origin;
-        traversalOrder.enqueue(origin);
+        
         vertexStack.push(origin);
-        System.out.print(origin);
+        T neighbor;
+        boolean yes = false;
 
         while (!vertexStack.isEmpty()){
-            topVertex = vertexStack.peek();
-            int[] theneighbors = this.neighbors(this.getIndex(topVertex));
-            //count = 0;
-            //count2 = 0;
+            origin = vertexStack.peek();
+            //vertexStack.pop();
 
-            if (this.checkvisits(container, theneighbors) != -1){
-                
-                nextNeighbor = this.getLabel(theneighbors[this.checkvisits(container, theneighbors)]);
-                count++;
+            if (visited[this.getIndex(origin)] == false){
+                System.out.print(origin);
+                visited[this.getIndex(origin)] = true;
 
-                System.out.print(nextNeighbor);
-                container[count1++] = nextNeighbor;
-                traversalOrder.enqueue(nextNeighbor);
-                vertexStack.push(nextNeighbor);
+                //int[] theneighbors = this.neighbors(this.getIndex(origin));
             }
-            else{
-                vertexStack.pop();
-                //count2 = 0;
-                System.out.println(1);
+
+            int[] theneighbors = this.neighbors(this.getIndex(origin));
+
+            for (int i = 0; i < theneighbors.length; i++){
+                neighbor = this.getLabel(theneighbors[i]);
+
+                if (!visited[getIndex(neighbor)]){
+                    vertexStack.push(neighbor);
+                    //yes = true;
+                    break;
+                    //yes = true;
+                }
+                else if (i == theneighbors.length - 1){
+                    vertexStack.pop();
+                }
             }
         }
-
-        return traversalOrder;
     }
 
     private boolean hasNeighbors(int vertex){
@@ -176,18 +171,61 @@ public class Graph<T> implements GraphInterface<T> {
         return itcontains;
     }
 
-    private int checkvisits(T[] x, int[] y){
+    private boolean checkvisits(T[] x, int[] y){
         for (int i = 0; i < x.length; i++){
             for (int j = 0; j < y.length;j++){
                 if (x[i] == this.getLabel(y[j])){
-                    return j;
+                    return true;
                 }
             }
         }
-        return -1;
+        return false;
     }
 
     //while (this.hasNeighbors(this.getIndex(frontVertex))){
 
     //            if (!contains(container, this.getLabel(theneighbors[count]))){
+/*
+        @SuppressWarnings("unchecked")
+        public QueueInterface<T> getDepthFirstTraversal(T origin){
+            ArrayQueue<T> traversalOrder = new ArrayQueue<>();
+            ResizableArrayStack<T> vertexStack = new ResizableArrayStack<>();
+            T[] container = (T[])new Object[labels.length];
+            int count1 = 0;
+            int count = 0;
+            int count2 = 0;
+            T topVertex;
+            T nextNeighbor;
+    
+            container[count1++] = origin;
+            traversalOrder.enqueue(origin);
+            vertexStack.push(origin);
+            System.out.print(origin);
+    
+            while (!vertexStack.isEmpty()){
+                topVertex = vertexStack.peek();
+                int[] theneighbors = this.neighbors(this.getIndex(topVertex));
+                //count = 0;
+                //count2 = 0;
+    
+                if (!this.contains(container, this.getLabel(theneighbors[count]))){
+                    
+                    nextNeighbor = this.getLabel(theneighbors[this.checkvisits(container, theneighbors)]);
+                    count++;
+    
+                    System.out.print(nextNeighbor);
+                    container[count1++] = nextNeighbor;
+                    traversalOrder.enqueue(nextNeighbor);
+                    vertexStack.push(nextNeighbor);
+                }
+                else{
+                    vertexStack.pop();
+                    //count2 = 0;
+                    System.out.println(1);
+                }
+            }
+    
+            return traversalOrder;
+        }
+        */
 }
