@@ -27,16 +27,7 @@ public class Main {
         example.addEdge(7, 8);
         example.addEdge(8, 5);
 
-        Graph<Integer> testgraph = new Graph<>(3);
-
-        int[] testneigh = testgraph.neighbors(0);
-
-        for (int i = 0; i < testneigh.length;i++){
-            System.out.println(testneigh[i]);
-            if (testneigh[i] == null){
-                System.out.println("itworks");
-            }
-        }
+        System.out.println(example.getBreadthFirstTraversal('A'));
 
         //testgraph.
 

@@ -62,18 +62,39 @@ public class Graph<T> implements GraphInterface<T> {
     //traversal methods
 
     //returns a queue with the breadth first traversal
+    @SuppressWarnings("unchecked")
     public QueueInterface<T> getBreadthFirstTraversal(T origin){
         ArrayQueue<T> traversalOrder = new ArrayQueue<>();
         ArrayQueue<T> vertexQueue = new ArrayQueue<>();
-        //Mark originVertex as visited?
-        //traversalOrder.enqueue(origin);
-        //vertexQueue.enqueue(origin);
+        T[] container = (T[])new Object[labels.length];
+        int count1 = 0;
+        int count = 0;
+        int count2 = 0;
+        T frontVertex;
+        T nextNeighbor;
 
-        //while (!vertexQueue.isEmpty()){
-          // T frontVertex = vertexQueue.dequeue();
+        //Mark originVertex as visited
+        container[count1++] = origin;
+        traversalOrder.enqueue(origin);
+        vertexQueue.enqueue(origin);
+        System.out.println(origin);
 
-           // while (frontVertex = vertexQueue.)
-        //}
+        while (!vertexQueue.isEmpty()){
+           frontVertex = vertexQueue.dequeue();
+           int[] theneighbors = this.neighbors(this.getIndex(frontVertex));
+
+            while (count2 < theneighbors.length){
+                nextNeighbor = this.getLabel(theneighbors[count]);
+                count++;
+                if (!contains(container, nextNeighbor)){
+                    System.out.println(nextNeighbor);
+                    container[count1++] = nextNeighbor;
+                    traversalOrder.enqueue(nextNeighbor);
+                    vertexQueue.enqueue(nextNeighbor);
+                }
+                count2++;
+            }
+        }
         return traversalOrder;
     }
     //returns a stack with the depth first traversal
@@ -81,4 +102,40 @@ public class Graph<T> implements GraphInterface<T> {
         ResizableArrayStack<T> testing = new ResizableArrayStack<>();
         return testing;
     }
+
+    private boolean hasNeighbors(int vertex){
+        boolean ithas = false;
+        for (int i = 0; i < labels.length; i++){
+            if (edges[vertex][i]){
+                ithas = true;
+            }
+        }
+
+        return ithas;
+    }
+
+    private int getIndex(T origin){
+        int number = 0;
+
+        for (int i = 0; i < labels.length; i++){
+            if (labels[i] == origin){
+                number = i;
+            }
+        }
+
+        return number;
+    } //assumes all labels in graph are different and that the graph does indeed have the given label
+
+    private boolean contains(T[] x, T y){
+        boolean itcontains = false;
+        for (int i = 0; i < x.length; i++){
+            if (x[i] == y){
+                itcontains = true;
+            }
+        }
+
+        return itcontains;
+    }
+
+    //while (this.hasNeighbors(this.getIndex(frontVertex))){
 }
