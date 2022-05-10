@@ -79,16 +79,16 @@ public class Graph<T> implements GraphInterface<T> {
         vertexQueue.enqueue(origin);
         System.out.print(origin);
 
-        while (!vertexQueue.isEmpty()){
+        while (!vertexQueue.isEmpty()){ //stops once the queue is empty
            frontVertex = vertexQueue.dequeue();
            int[] theneighbors = this.neighbors(this.getIndex(frontVertex));
            count = 0;
            count2 = 0;
 
-            while (count2 < theneighbors.length){
+            while (count2 < theneighbors.length){ //essentially keeps going for how many neighbors there are.
                 nextNeighbor = this.getLabel(theneighbors[count]);
                 count++;
-                if (!contains(container, nextNeighbor)){
+                if (!contains(container, nextNeighbor)){ //if the neighbor has not been visited yet it prints it.
                     System.out.print(nextNeighbor);
                     container[count1++] = nextNeighbor;
                     traversalOrder.enqueue(nextNeighbor);
