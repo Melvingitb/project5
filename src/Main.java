@@ -29,6 +29,9 @@ public class Main {
         example.addEdge(8, 5);
 
         example.getBreadthFirstTraversal('A');
+        System.out.println("");
+        example.getDepthFirstTraversal('A');
+        System.out.println("");
 
         Graph<Character> example2 = new Graph<>(4);
 

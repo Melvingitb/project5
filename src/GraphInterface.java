@@ -12,6 +12,6 @@ public interface GraphInterface<T> {
 
     //traversal methods
     public QueueInterface<T> getBreadthFirstTraversal(T origin); //returns a queue with the breadth first traversal
-    public StackInterface<T> getDepthFirstTraversal(T origin); //returns a stack with the depth first traversal
+    public QueueInterface<T> getDepthFirstTraversal(T origin); //returns a stack with the depth first traversal
 
 }

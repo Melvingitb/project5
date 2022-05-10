@@ -99,10 +99,47 @@ public class Graph<T> implements GraphInterface<T> {
         }
         return traversalOrder;
     }
-    //returns a stack with the depth first traversal
-    public StackInterface<T> getDepthFirstTraversal(T origin){
-        ResizableArrayStack<T> testing = new ResizableArrayStack<>();
-        return testing;
+    //returns a queue with the depth first traversal
+    @SuppressWarnings("unchecked")
+    public QueueInterface<T> getDepthFirstTraversal(T origin){
+        ArrayQueue<T> traversalOrder = new ArrayQueue<>();
+        ResizableArrayStack<T> vertexStack = new ResizableArrayStack<>();
+        T[] container = (T[])new Object[labels.length];
+        int count1 = 0;
+        int count = 0;
+        int count2 = 0;
+        T topVertex;
+        T nextNeighbor;
+
+        container[count1++] = origin;
+        traversalOrder.enqueue(origin);
+        vertexStack.push(origin);
+        System.out.print(origin);
+
+        while (!vertexStack.isEmpty()){
+            topVertex = vertexStack.peek();
+            int[] theneighbors = this.neighbors(this.getIndex(topVertex));
+            count = 0;
+            count2 = 0;
+
+            if (!contains(container, this.getLabel(theneighbors[count]))){
+                
+                nextNeighbor = this.getLabel(theneighbors[count]);
+                count++;
+
+                System.out.print(nextNeighbor);
+                container[count1++] = nextNeighbor;
+                traversalOrder.enqueue(nextNeighbor);
+                vertexStack.push(nextNeighbor);
+            }
+            else{
+                vertexStack.pop();
+                count++;
+                System.out.println(1);
+            }
+        }
+
+        return traversalOrder;
     }
 
     private boolean hasNeighbors(int vertex){
